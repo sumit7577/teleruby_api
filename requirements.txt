@@ -1,0 +1,5 @@
+fastapi
+motor
+dnspython
+uvicorn
+python-decouple
