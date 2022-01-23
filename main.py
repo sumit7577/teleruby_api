@@ -2,6 +2,7 @@ import os
 import fastapi
 from fastapi import HTTPException
 import random
+from pkg_resources import VersionConflict
 import uvicorn
 from enum import Enum
 from decouple import config
@@ -45,8 +46,10 @@ async def verify(key: str = None, machine_code: str = None, product: str = None,
 
 @app.get("/login")
 async def login(username:str=None,key:str=None,version:str=None):
-    if(not username and not key and not version):
+    if not username and not key:
         return {"error": True, "message": "Please Enter Username and Password"}
+    if not version or version == "2.0":
+        return {"error":True,"message": "Update! Available"}
     else:
         keys = await collection.find_one({"_id": "keys"})
         if keys is None:
