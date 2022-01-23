@@ -9,9 +9,10 @@ import datetime
 from motor.motor_asyncio import AsyncIOMotorClient
 app = fastapi.FastAPI()
 
-client = AsyncIOMotorClient("mongodb+srv://teleruby:ilovelostinspace@cluster0.xcc3q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+client = AsyncIOMotorClient("mongodb+srv://teleruby:ilovelostinspace@cluster0.ck4qf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 db = client.teleruby
 collection = db.users
+
 
 @app.get("/verify")
 async def verify(key: str = None, machine_code: str = None, product: str = None,version:str = None):
